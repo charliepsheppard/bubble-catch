@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+    background-color: gray;
+}
+
+#top-container, #game-container {
+    text-align: center;
+}
+.game-canvas {
+    background-color: #fff;
+}

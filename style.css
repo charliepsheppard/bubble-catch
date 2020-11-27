@@ -1,14 +1,15 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-}
+} */
 
 body {
     background-color: gray;
+    margin: 0;
 }
 
-#top-container, #game-container {
+#top-container, #game-container, .game-canvas {
     text-align: center;
 }
 .game-canvas {

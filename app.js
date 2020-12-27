@@ -13,12 +13,6 @@ const canvasPosition = getPosition(canvas);
 
 let points = 1;
 
-// addEventListener('mousemove', (event) => {
-//     mouse.x = event.clientX;
-//     console.log(mouse.x)
-//     mouse.y = event.clientY;
-// })
-
 canvas.addEventListener('mousemove', setMouseMove, false)
 
 canvas.addEventListener('resize', () => {
@@ -62,7 +56,7 @@ const randomIntegerFromRange = (min, max) => {
     return Math.random() * (max - min * 1) + min;
 }
 
-function rotate(velocity, angle) {
+const rotate = (velocity, angle) => {
     const rotatedVelocities = {
         x: velocity.x * Math.cos(angle) - velocity.y * Math.sin(angle),
         y: velocity.x * Math.sin(angle) + velocity.y * Math.cos(angle)
@@ -71,7 +65,7 @@ function rotate(velocity, angle) {
     return rotatedVelocities;
 }
 
-function resolveCollision(bubble, otherBubble) {
+const resolveCollision = (bubble, otherBubble) => {
     const xVelocityDiff = bubble.velocity.x - otherBubble.velocity.x;
     const yVelocityDiff = bubble.velocity.y - otherBubble.velocity.y;
 
@@ -190,12 +184,12 @@ let bubbles = {
 }
 
 function init() {
-    player = new Player(200, 100, 20, 'dodgerblue');
+    player = new Player(200, 100, 15, 'dodgerblue');
     player.draw();
 
 
-    for (let i = 0; i < 10; i++) {
-        const radius = 50;
+    for (let i = 0; i < 30; i++) {
+        const radius = 30;
         let x = randomIntegerFromRange(radius, canvas.width - radius);
         let y = randomIntegerFromRange(radius, canvas.height - radius);
 
@@ -227,7 +221,7 @@ function init() {
 
 // Animation loop
 
-function animate() {
+const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player.x = mouse.x;
     player.y = mouse.y;
@@ -261,9 +255,9 @@ function animate() {
 
     // let canvasContent = document.querySelector('.game-canvas');
 
-    if (points < 8 && points > 0) {
+    if (points < 20 && points > 0) {
         document.querySelector('.score-current').textContent = `Score: ${points}`;
-    } else if(points === 8) {
+    } else if(points === 20) {
         // canvasContent.remove();
         document.querySelector('.score-current').textContent = 'YOU WIN!'
         player = undefined;
@@ -284,6 +278,12 @@ function animate() {
     // })
 
 }
+
+const resetGame = () => {
+    location.reload();
+}
+
+document.querySelector('.reset-btn').addEventListener('click', resetGame);
 
 init();
 animate();
